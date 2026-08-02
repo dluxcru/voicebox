@@ -42,6 +42,12 @@ WHISPER_HF_REPOS = {
     "medium": "openai/whisper-medium",
     "large": "openai/whisper-large-v3",
     "turbo": "openai/whisper-large-v3-turbo",
+    # CrisperWhisper 2.0 (Nyra Health, non-commercial research license) — verbatim
+    # transcription mode keeps stutters/hesitations, word-level timestamps.
+    "crisper-small": "nyralabs/CrisperWhisper2.0_small",
+    "crisper-medium": "nyralabs/CrisperWhisper2.0_medium",
+    "crisper-turbo": "nyralabs/CrisperWhisper2.0_turbo",
+    "crisper-large": "nyralabs/CrisperWhisper2.0_large",
 }
 
 
@@ -411,6 +417,34 @@ def _get_whisper_configs() -> list[ModelConfig]:
             engine="whisper",
             hf_repo_id="openai/whisper-large-v3-turbo",
             model_size="turbo",
+        ),
+        ModelConfig(
+            model_name="whisper-crisper-small",
+            display_name="CrisperWhisper Small",
+            engine="whisper",
+            hf_repo_id="nyralabs/CrisperWhisper2.0_small",
+            model_size="crisper-small",
+        ),
+        ModelConfig(
+            model_name="whisper-crisper-medium",
+            display_name="CrisperWhisper Medium",
+            engine="whisper",
+            hf_repo_id="nyralabs/CrisperWhisper2.0_medium",
+            model_size="crisper-medium",
+        ),
+        ModelConfig(
+            model_name="whisper-crisper-turbo",
+            display_name="CrisperWhisper Turbo",
+            engine="whisper",
+            hf_repo_id="nyralabs/CrisperWhisper2.0_turbo",
+            model_size="crisper-turbo",
+        ),
+        ModelConfig(
+            model_name="whisper-crisper-large",
+            display_name="CrisperWhisper Large",
+            engine="whisper",
+            hf_repo_id="nyralabs/CrisperWhisper2.0_large",
+            model_size="crisper-large",
         ),
     ]
 
