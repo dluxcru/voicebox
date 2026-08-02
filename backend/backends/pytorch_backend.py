@@ -34,6 +34,9 @@ class PyTorchTTSBackend:
 
     def _get_device(self) -> str:
         """Get the best available device."""
+        # ROCm exposes torch.cuda but PyTorch Whisper crashes on gfx1201 — force CPU
+        if torch.cuda.is_available() and torch.version.hip is not None:
+            return "cpu"
         return get_torch_device(allow_xpu=True, allow_directml=True)
 
     def is_loaded(self) -> bool:
@@ -256,6 +259,9 @@ class PyTorchSTTBackend:
 
     def _get_device(self) -> str:
         """Get the best available device."""
+        # ROCm exposes torch.cuda but PyTorch Whisper crashes on gfx1201 — force CPU
+        if torch.cuda.is_available() and torch.version.hip is not None:
+            return "cpu"
         return get_torch_device(allow_xpu=True, allow_directml=True)
 
     def is_loaded(self) -> bool:

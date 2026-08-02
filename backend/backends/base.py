@@ -99,6 +99,10 @@ def get_torch_device(
     import torch
 
     if torch.cuda.is_available():
+        # ROCm exposes torch.cuda but PyTorch Whisper crashes on gfx1201 — force CPU
+        if torch.version.hip is not None:
+            logger.warning("ROCm detected — forcing CPU to avoid GPU compatibility crashes")
+            return "cpu"
         return "cuda"
 
     if allow_xpu:
